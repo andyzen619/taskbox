@@ -1,5 +1,19 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
+// Our new error field is configured here
+const AppStateSlice = createSlice({
+  name: "appState",
+  initialState: "",
+  reducers: {
+    updateAppState: (state, action) => {
+      return {
+        ...state,
+        isError: action.payload,
+      };
+    },
+  },
+});
+
 const defaultTasks = [
   { id: "1", title: "Something", state: "TASK_INBOX" },
   { id: "2", title: "Something more", state: "TASK_INBOX" },
@@ -22,10 +36,12 @@ const TasksSlice = createSlice({
 });
 
 export const { updateTaskState } = TasksSlice.actions;
+export const { updateAppState } = AppStateSlice.actions;
 
 const store = configureStore({
   reducer: {
     tasks: TasksSlice.reducer,
+    isError: AppStateSlice.reducer,
   },
 });
 

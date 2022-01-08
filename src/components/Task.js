@@ -1,13 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const Task = (props) => {
-  const {
-    task: { id, title, state },
-    onArchiveTask,
-    onPinTask,
-  } = props;
-
+export default function Task({
+  task: { id, title, state },
+  onArchiveTask,
+  onPinTask,
+}) {
   return (
     <div className={`list-item ${state}`}>
       <label className="checkbox">
@@ -47,7 +45,7 @@ const Task = (props) => {
       </div>
     </div>
   );
-};
+}
 
 Task.propTypes = {
   /** Composition of the task */
@@ -64,5 +62,3 @@ Task.propTypes = {
   /** Event to change the task to pinned */
   onPinTask: PropTypes.func,
 };
-
-export default Task;
